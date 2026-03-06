@@ -1,50 +1,71 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Location
+import java.util.Objects;
+
+public abstract sealed class Location permits City,Airport,GasStation
 {
     private String nume;
     private String tara;
     private double altitudine;
 
-    public Location(String nume,String tara,double altitudine)
+    protected Location(String nume,String tara,double altitudine)
     {
         this.nume=nume;
         this.tara=tara;
         this.altitudine=altitudine;
     }
+
+    public String getNume()
+    {
+        return nume;
+    }
+
     public void setNume(String nume)
     {
         this.nume=nume;
     }
-    public String getNume()
+
+    public String getTara()
     {
-        return nume;
+        return tara;
     }
 
     public void setTara(String tara)
     {
         this.tara=tara;
     }
-    public String getTara()
+
+    public double getAltitudine()
     {
-        return tara;
+        return altitudine;
     }
 
     public void setAltitudine(double altitudine)
     {
         this.altitudine=altitudine;
     }
-    public double getAltitudine()
+
+    @Override
+    public boolean equals(Object o)
     {
-        return altitudine;
+        if(this==o)return true;
+        if(o==null)return false;
+        if(getClass()!=o.getClass())return false;
+
+        Location other=(Location)o;
+
+        return Double.compare(altitudine,other.altitudine)==0
+                &&Objects.equals(nume,other.nume)
+                &&Objects.equals(tara,other.tara);
     }
 
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getClass(),nume,tara,altitudine);
+    }
 
     @Override
     public String toString()
     {
-        return "Location{numele este'"+nume+"',tara este'"+tara+"',altitudine="+altitudine+"m}";
+        return getClass().getSimpleName()+"{nume='"+nume+"',tara='"+tara+"',altitudine="+altitudine+"m}";
     }
 }
-
-
