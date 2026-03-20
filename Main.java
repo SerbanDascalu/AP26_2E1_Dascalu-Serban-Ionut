@@ -1,37 +1,32 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.io.IOException;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        City city = RandomCityGen.generateCity("RandomCity", 6);
+        Repository repository = new Repository("MyRepository");
 
-        System.out.println(city);
-        System.out.println();
+        RepositoryManager manager = new RepositoryManager(repository);
 
-        System.out.println("Intersections:");
-        for (Intersection intersection : city.getIntersections())
+
+        Resource r1 = new Resource("Document1", "test1.txt");
+        Resource r2 = new Resource("Document2", "test2.pdf");
+
+        manager.add(r1);
+        manager.add(r2);
+
+        System.out.println("Repository: " + repository.getName());
+        manager.display();
+
+        try
         {
-            System.out.println(intersection.getName() + " (" + intersection.getX() + ", " + intersection.getY() + ")");
+            manager.open(r1);
         }
-
-        System.out.println();
-        System.out.println("Streets:");
-        for (Street street : city.getStreets())
+        catch (Exception e)
         {
-            System.out.println(street);
+            System.out.println("Could not open resource: " + e.getMessage());
         }
-
-        System.out.println();
-        System.out.println("Query streets:");
-        for (Street street : city.queryStreets(20))
-        {
-            System.out.println(street);
-        }
-
-        System.out.println();
-        MaintenanceCar planner = new MaintenanceCar(city);
-        Route route = planner.findMaintenanceRoute(city.getIntersections().get(0));
-
-        System.out.println("Maintenance route:");
-        System.out.println(route);
     }
 }
