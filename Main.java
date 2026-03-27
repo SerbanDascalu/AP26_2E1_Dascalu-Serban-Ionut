@@ -1,32 +1,31 @@
+package org.example;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.io.IOException;
+
+import java.sql.SQLException;
+
 
 public class Main
 {
     public static void main(String[] args)
     {
-        Repository repository = new Repository("MyRepository");
-
-        RepositoryManager manager = new RepositoryManager(repository);
-
-
-        Resource r1 = new Resource("Document1", "test1.txt");
-        Resource r2 = new Resource("Document2", "test2.pdf");
-
-        manager.add(r1);
-        manager.add(r2);
-
-        System.out.println("Repository: " + repository.getName());
-        manager.display();
-
         try
         {
-            manager.open(r1);
+            GenreDAO genreDAO = new GenreDAO();
+
+            genreDAO.create("Action");
+            genreDAO.create("Drama");
+
+            Genre g1 = genreDAO.findById(1);
+            System.out.println("Find by id: " + g1);
+
+            Genre g2 = genreDAO.findByName("Drama");
+            System.out.println("Find by name: " + g2);
         }
-        catch (Exception e)
+        catch (SQLException e)
         {
-            System.out.println("Could not open resource: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
