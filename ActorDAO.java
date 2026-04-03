@@ -4,11 +4,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenreDAO
+public class ActorDAO
 {
     public void create(String name) throws SQLException
     {
-        String sql = "INSERT INTO genres (name) VALUES (?) ON CONFLICT (name) DO NOTHING";
+        String sql = "INSERT INTO actors (name) VALUES (?) ON CONFLICT (name) DO NOTHING";
 
         try (Connection connection = Database.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql))
@@ -18,9 +18,9 @@ public class GenreDAO
         }
     }
 
-    public Genre findById(int id) throws SQLException
+    public Actor findById(int id) throws SQLException
     {
-        String sql = "SELECT id, name FROM genres WHERE id = ?";
+        String sql = "SELECT id, name FROM actors WHERE id = ?";
 
         try (Connection connection = Database.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql))
@@ -31,7 +31,7 @@ public class GenreDAO
             {
                 if (rs.next())
                 {
-                    return new Genre(rs.getInt("id"), rs.getString("name"));
+                    return new Actor(rs.getInt("id"), rs.getString("name"));
                 }
             }
         }
@@ -39,9 +39,9 @@ public class GenreDAO
         return null;
     }
 
-    public Genre findByName(String name) throws SQLException
+    public Actor findByName(String name) throws SQLException
     {
-        String sql = "SELECT id, name FROM genres WHERE name = ?";
+        String sql = "SELECT id, name FROM actors WHERE name = ?";
 
         try (Connection connection = Database.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql))
@@ -52,7 +52,7 @@ public class GenreDAO
             {
                 if (rs.next())
                 {
-                    return new Genre(rs.getInt("id"), rs.getString("name"));
+                    return new Actor(rs.getInt("id"), rs.getString("name"));
                 }
             }
         }
@@ -60,10 +60,10 @@ public class GenreDAO
         return null;
     }
 
-    public List<Genre> findAll() throws SQLException
+    public List<Actor> findAll() throws SQLException
     {
-        List<Genre> genres = new ArrayList<>();
-        String sql = "SELECT id, name FROM genres ORDER BY id";
+        List<Actor> actors = new ArrayList<>();
+        String sql = "SELECT id, name FROM actors ORDER BY id";
 
         try (Connection connection = Database.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
@@ -71,10 +71,10 @@ public class GenreDAO
         {
             while (rs.next())
             {
-                genres.add(new Genre(rs.getInt("id"), rs.getString("name")));
+                actors.add(new Actor(rs.getInt("id"), rs.getString("name")));
             }
         }
 
-        return genres;
+        return actors;
     }
 }

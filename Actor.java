@@ -1,11 +1,11 @@
 package org.example;
 
-public class Genre
+public class Actor
 {
     private int id;
     private String name;
 
-    public Genre(int id, String name)
+    public Actor(int id, String name)
     {
         this.id = id;
         this.name = name;
@@ -24,6 +24,6 @@ public class Genre
     @Override
     public String toString()
     {
-        return "Genre{id=" + id + ", name='" + name + "'}";
+        return "Actor{id=" + id + ", name='" + name + "'}";
     }
 }
