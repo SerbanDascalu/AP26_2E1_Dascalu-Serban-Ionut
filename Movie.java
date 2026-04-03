@@ -1,28 +1,18 @@
 package org.example;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Movie
 {
     private int id;
     private String title;
-    private LocalDate releaseDate;
-    private int duration;
-    private double score;
-    private Genre genre;
-    private List<Actor> actors;
+    private int year;
+    private String genre;
 
-    public Movie(int id, String title, LocalDate releaseDate, int duration, double score, Genre genre)
+    public Movie(int id, String title, int year, String genre)
     {
         this.id = id;
         this.title = title;
-        this.releaseDate = releaseDate;
-        this.duration = duration;
-        this.score = score;
+        this.year = year;
         this.genre = genre;
-        this.actors = new ArrayList<>();
     }
 
     public int getId()
@@ -35,40 +25,13 @@ public class Movie
         return title;
     }
 
-    public LocalDate getReleaseDate()
+    public int getYear()
     {
-        return releaseDate;
+        return year;
     }
 
-    public int getDuration()
-    {
-        return duration;
-    }
-
-    public double getScore()
-    {
-        return score;
-    }
-
-    public Genre getGenre()
+    public String getGenre()
     {
         return genre;
-    }
-
-    public List<Actor> getActors()
-    {
-        return actors;
-    }
-
-    public void addActor(Actor actor)
-    {
-        actors.add(actor);
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Movie{id=" + id + ", title='" + title + '\'' + ", releaseDate=" + releaseDate +
-                ", duration=" + duration + ", score=" + score + ", genre=" + genre + ", actors=" + actors + '}';
     }
 }
