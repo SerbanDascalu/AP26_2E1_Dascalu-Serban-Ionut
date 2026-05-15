@@ -1,4 +1,4 @@
-package org.example.lab8_compulsory;
+package org.example;
 
 public class Cell {
     private final int row;
@@ -14,43 +14,16 @@ public class Cell {
         this.col = col;
     }
 
-    public int getRow() {
-        return row;
-    }
+    public int getRow() { return row; }
+    public int getCol() { return col; }
 
-    public int getCol() {
-        return col;
-    }
+    public boolean hasTopWall() { return topWall; }
+    public boolean hasRightWall() { return rightWall; }
+    public boolean hasBottomWall() { return bottomWall; }
+    public boolean hasLeftWall() { return leftWall; }
 
-    public boolean hasTopWall() {
-        return topWall;
-    }
-
-    public boolean hasRightWall() {
-        return rightWall;
-    }
-
-    public boolean hasBottomWall() {
-        return bottomWall;
-    }
-
-    public boolean hasLeftWall() {
-        return leftWall;
-    }
-
-    public void removeTopWall() {
-        topWall = false;
-    }
-
-    public void removeRightWall() {
-        rightWall = false;
-    }
-
-    public void removeBottomWall() {
-        bottomWall = false;
-    }
-
-    public void removeLeftWall() {
-        leftWall = false;
-    }
+    public void removeTopWall() { topWall = false; }
+    public void removeRightWall() { rightWall = false; }
+    public void removeBottomWall() { bottomWall = false; }
+    public void removeLeftWall() { leftWall = false; }
 }
